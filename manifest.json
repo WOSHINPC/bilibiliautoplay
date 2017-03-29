@@ -1,0 +1,37 @@
+﻿{
+  "name": "哔哩哔哩自动播放",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "permissions": [
+    "tabs",
+    "http://space.bilibili.com/*",
+    "http://www.bilibili.com/video/av*",
+    "http://www.ibilibili.com/video/av*",
+    "http://api.bilibili.com/playurl*"
+  ],
+  "description": "这个扩展很懒，没有写任何描述",
+  "browser_action": {
+    "default_icon": "icon/icon.bmp",
+    "default_title": "哔哩哔哩自动播放",
+        "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": [
+      "/js/background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+//        "http://*/*",
+        "http://space.bilibili.com/*",
+        "http://www.bilibili.com/video/av*"
+      ],
+      //      "css": ["mystyles.css"],
+      "js": [
+        "/js/jquery-3.2.0.min.js",
+        "/js/my.js"
+      ]
+    }
+  ]
+} 
