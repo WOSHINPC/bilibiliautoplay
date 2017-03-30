@@ -15,7 +15,20 @@
         console.log("record");
         chrome.tabs.getSelected(null, function (tab) {
             chrome.tabs.sendRequest(tab.id, {greeting: "record"}, function (response) {
-                localStorage.setItem("favorite-list",JSON.stringify(response));
+                var list = new List().init();
+                var ol = $("#recordList ol");
+                ol.html("");
+                list.loadData(response, function (isSuccess, e) {
+                    if (isSuccess) {
+                        ol.append("<li>" + e.title + "</li>");
+                    } else {
+                        ol.append("<li><del>" + e.title + "</del></li>");
+                    }
+                });
+                list.save();
+                $("#recordList").css("display", "");
+
+                //localStorage.setItem("favorite-list",JSON.stringify(response));
             });
         });
     })

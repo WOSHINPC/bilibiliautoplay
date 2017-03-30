@@ -7,14 +7,20 @@
     chrome.extension.onRequest.addListener(
         function (request, sender, sendResponse) {
             if (request.greeting == "record") {
-                var $videos = $("#video-list-style .small-item .title");
-                var obj = [];
-                $videos.each(function (index, e) {
-                    obj[index] = {};
-                    obj[index].url = e.href;
-                    obj[index].title = e.title;
-                });
-                sendResponse(obj);
+                var aid = getAid(window.location.href);
+                if (aid) {
+                    var title = $(".main-inner .v-title h1").text();
+                    sendResponse([{"aid": aid, "title": title}]);
+                } else {
+                    var $videos = $("#video-list-style .small-item .title");
+                    var obj = [];
+                    $videos.each(function (index, e) {
+                        obj[index] = {};
+                        obj[index].aid = getAid(e.href);
+                        obj[index].title = e.title;
+                    });
+                    sendResponse(obj);
+                }
             } else {
                 sendResponse({"unkown": "fail"});
             }

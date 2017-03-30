@@ -3,17 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>收录页</title>
+    <link href="/css/jquery-ui.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f6f6f6;
+        }
+
+        .videoDiv {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            border-radius: 10px;
+            border: 1px solid #000;
+            background-color: #fff;
+        }
+
+        video {
+            max-width: 600px;
+            border-radius: 10px;
+        }
+
+        button {
+            margin: 10px;
+        }
+        #dialog{
+            /*display: none;*/
+        }
+    </style>
 </head>
 <body>
-<!--<button id="refresh">刷新</button>-->
-<video id="video" autoplay="autoplay" controls="controls">
-    您的浏览器不支持 video 标签。
-</video>
+<div class='videoDiv'>
+    <video id="video" autoplay="autoplay" controls="controls">
+        您的浏览器不支持 video 标签。
+    </video>
+    <br>
+    <button class="ui-button" id="before">上一个</button>
+    <button class="ui-button" id="next">下一个</button>
+    <button class="ui-button" id="openbili">前往B站</button>
+</div>
+
 <ol id="list">
 
 </ol>
+<div id="dialog" title="删除">
+    <p>删除操作不可逆，确定删除吗？</p>
+</div>
 </body>
 <script src="/js/jquery-3.2.0.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
 <script src="/js/json2.js"></script>
-<script src="js/play.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/play.js"></script>
 </html>

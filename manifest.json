@@ -13,7 +13,7 @@
   "browser_action": {
     "default_icon": "icon/icon.bmp",
     "default_title": "哔哩哔哩自动播放",
-        "default_popup": "popup.html"
+    "default_popup": "popup.html"
   },
   "background": {
     "scripts": [
@@ -30,6 +30,7 @@
       //      "css": ["mystyles.css"],
       "js": [
         "/js/jquery-3.2.0.min.js",
+        "/js/common.js",
         "/js/my.js"
       ]
     }
