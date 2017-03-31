@@ -90,6 +90,11 @@
             $('#dialog p').html("删除操作不可逆，确定删除?<br>" + $(this).parent().text());
             $('#dialog').dialog('open');
         });
+        $("#list li").dblclick(function (e) {
+            var aid = $(this).attr("id");
+            list.move(aid);
+            play(aid);
+        });
     }
 
     // 删除
