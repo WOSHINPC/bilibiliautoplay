@@ -3,7 +3,19 @@
  */
 (function () {
     console.log("loading......");
-
+    chrome.extension.sendRequest({greeting: "autoplay"}, function (response) {
+        console.log(response);
+        if (response.code == "play"){
+            var inter = window.setInterval(function () {
+                var a = $(".bilibili-player-video-btn-start");
+                if (a.hasClass("video-state-pause")) {
+                    a.click();
+                } else {
+                    window.clearInterval(inter);
+                }
+            }, 500);
+        }
+    });
     chrome.extension.onRequest.addListener(
         function (request, sender, sendResponse) {
             if (request.greeting == "record") {

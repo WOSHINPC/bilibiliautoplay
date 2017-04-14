@@ -23,6 +23,41 @@
             margin-top: 2px;
             font-size: 8px;
         }
+
+        .ui-menu {
+            position: absolute;
+            width: 100px;
+        }
+
+        .auto-play{
+            float: left;
+        }
+        .auto-play ul {
+            border-radius: 4px;
+            border: 1px solid #aaaaaa;
+            background: #ffffff 50% 50% repeat-x;
+            color: #222222;
+        }
+
+        .auto-play ul li {
+            border: 0;
+            line-height: 20px;
+            font-size: 10px;
+        }
+        .auto-play ul li a{
+            text-decoration: none;
+            display: block;
+            padding: 2px .4em;
+            line-height: 1.5;
+            min-height: 0;
+            font-weight: normal;
+            color: #222222;
+        }
+        .auto-play ul li a:hover{
+            border-radius: 4px;
+            border: 1px solid #999;
+            background: #dadada 50% 50% repeat-x;
+        }
     </style>
 </head>
 <body>
@@ -32,6 +67,16 @@
 
 <button class="ui-button" id="record">收录当前页</button>
 
+<button class="ui-button" id="select">禁用</button>
+<!--<input type="text"><br>-->
+
+<div class="auto-play">
+    <!--<button class="ui-button" id="select">禁用</button>-->
+    <ul>
+        <li><a href="#" type="disable">禁用</a></li>
+        <li><a href="#" type="play">自动播放</a></li>
+    </ul>
+</div>
 <div id="recordList" style="display: none">
     <p>成功收录以下：</p>
     <ol>

@@ -11,6 +11,38 @@
         chrome.tabs.create({"url": "/play.html"}, function (tab) {
         })
     })
+    $(".auto-play ul li a").click(function () {
+        var autoPalyType = $(this).attr("type");
+        localStorage.setItem("autoPalyType", autoPalyType);
+        if (autoPalyType == "play") {
+            $("#select").text("自动播放");
+        } else {
+            $("#select").text("禁用");
+        }
+    });
+    var autoPalyType = localStorage.getItem("autoPalyType");
+    if (autoPalyType == "play") {
+        $("#select").text("自动播放");
+    } else if (autoPalyType == "enforcement") {
+        $("#select").text("强制播放");
+    } else {
+        $("#select").text("禁用");
+    }
+
+    $(".auto-play ul").hide().menu();
+    $("#select").click(function () {
+        var menu = $(".auto-play ul").show().position({
+            my: "left top",
+            at: "left bottom",
+            of: this
+        });
+        $(document).one("click", function () {
+            menu.hide();
+        });
+        return false;
+    });
+
+
     $("#record").click(function () {
         console.log("record");
         chrome.tabs.getSelected(null, function (tab) {

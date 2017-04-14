@@ -4,10 +4,8 @@
   "manifest_version": 2,
   "permissions": [
     "tabs",
-    "http://space.bilibili.com/*",
-    "http://www.bilibili.com/video/av*",
-    "http://www.ibilibili.com/video/av*",
-    "http://api.bilibili.com/playurl*"
+    "*://*.bilibili.com/*",
+    "http://www.ibilibili.com/video/av*"
   ],
   "description": "这个扩展很懒，没有写任何描述",
   "browser_action": {
@@ -23,9 +21,7 @@
   "content_scripts": [
     {
       "matches": [
-//        "http://*/*",
-        "http://space.bilibili.com/*",
-        "http://www.bilibili.com/video/av*"
+        "*://*.bilibili.com/*"
       ],
       //      "css": ["mystyles.css"],
       "js": [
