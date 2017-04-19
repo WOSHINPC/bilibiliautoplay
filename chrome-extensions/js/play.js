@@ -13,6 +13,12 @@
     $("#before").click(function () {
         playBefore();
     })
+    $("#clearAll").click(function () {
+        if(confirm('清空操作不可逆，请谨慎操作')){
+            new List().clearAll();
+            $("#list li").remove();
+        }
+    })
     $("#openbili").click(function () {
         chrome.tabs.create({"url": "http://www.bilibili.com/video/av" + list.currAid}, function (tab) {
         })

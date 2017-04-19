@@ -9,11 +9,14 @@
             var inter = window.setInterval(function () {
                 var a = $(".bilibili-player-video-btn-start");
                 if (a.hasClass("video-state-pause")) {
-                    a.click();
+                    var r = a.click();
+                    if (!r.hasClass("video-state-pause")){
+                        window.clearInterval(inter);
+                    }
                 } else {
                     window.clearInterval(inter);
                 }
-            }, 500);
+            }, 1000);
         }
     });
     chrome.extension.onRequest.addListener(
@@ -24,7 +27,7 @@
                     var title = $(".main-inner .v-title h1").text();
                     sendResponse([{"aid": aid, "title": title}]);
                 } else {
-                    var $videos = $("#video-list-style .small-item .title");
+                    var $videos = $(".small-item .title");
                     var obj = [];
                     $videos.each(function (index, e) {
                         obj[index] = {};

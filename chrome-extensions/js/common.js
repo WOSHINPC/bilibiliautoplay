@@ -81,6 +81,10 @@ List.prototype.move = function (aid) {
 List.prototype.save = function () {
     localStorage.setItem("favorite-list", JSON.stringify(this));
 }
+List.prototype.clearAll = function () {
+    localStorage.removeItem("favorite-list");
+    localStorage.removeItem("list-curr-aid");
+};
 List.prototype.init = function () {
     var listStr = localStorage.getItem("favorite-list");
     if (listStr) {
