@@ -6,7 +6,7 @@
     video.addEventListener('ended', function () {
         playNext();
     }, false);
-    var list;
+    var list = new List().init();;
     $("#next").click(function () {
         playNext();
     })
@@ -15,7 +15,8 @@
     })
     $("#clearAll").click(function () {
         if(confirm('清空操作不可逆，请谨慎操作')){
-            new List().clearAll();
+            list.clearAll();
+            list={};
             $("#list li").remove();
         }
     })
@@ -78,7 +79,6 @@
     });
     function refresh() {
         var $list = $("#list");
-        list = new List().init();
         if (!list.first) {
             return;
         }
@@ -148,7 +148,7 @@
                     video.play();
                     return;
                 } else {
-                    var u = "http://www.bilibili.com/video/av" + aid;
+                    var u = "http://www.ibilibili.com/video/av" + aid;
                     $.get(u, function (result) {
                         var mp3url = $(result).find("a:contains('请点击下载mp3')");
                         if (mp3url.length > 0) {

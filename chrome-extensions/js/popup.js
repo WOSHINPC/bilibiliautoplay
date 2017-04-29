@@ -41,7 +41,19 @@
         });
         return false;
     });
-
+    $(".search-text").on("keypress",function (e) {
+        if (e.keyCode == 13){
+            var url = "";
+            var val = $(this).val();
+            if (/\d+/.test(val)){
+                url = "http://www.bilibili.com/video/av"+val;
+            }else{
+                url = "http://search.bilibili.com/all?from_source=banner_search&keyword="+val;
+            }
+            chrome.tabs.create({"url": url}, function (tab) {
+            })
+        }
+    })
 
     $("#record").click(function () {
         console.log("record");

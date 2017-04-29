@@ -29,9 +29,10 @@
             width: 100px;
         }
 
-        .auto-play{
+        .auto-play {
             float: left;
         }
+
         .auto-play ul {
             border-radius: 4px;
             border: 1px solid #aaaaaa;
@@ -44,7 +45,8 @@
             line-height: 20px;
             font-size: 10px;
         }
-        .auto-play ul li a{
+
+        .auto-play ul li a {
             text-decoration: none;
             display: block;
             padding: 2px .4em;
@@ -53,11 +55,19 @@
             font-weight: normal;
             color: #222222;
         }
-        .auto-play ul li a:hover{
+
+        .auto-play ul li a:hover {
             border-radius: 4px;
             border: 1px solid #999;
             background: #dadada 50% 50% repeat-x;
         }
+
+        .search-text {
+            width: 200px;
+            height: 24px;
+            margin-top: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -68,10 +78,10 @@
 <button class="ui-button" id="record">收录当前页</button>
 
 <button class="ui-button" id="select">禁用</button>
-<!--<input type="text"><br>-->
+
+<input type="text" class="search-text" placeholder="搜索（纯数字视为av号）"/>
 
 <div class="auto-play">
-    <!--<button class="ui-button" id="select">禁用</button>-->
     <ul>
         <li><a href="#" type="disable">禁用</a></li>
         <li><a href="#" type="play">自动播放</a></li>
