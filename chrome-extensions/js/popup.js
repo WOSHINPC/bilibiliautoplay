@@ -5,12 +5,13 @@
 (function () {
     $("#openFavorite").click(function () {
         chrome.tabs.create({"url": "http://www.bilibili.com"}, function (tab) {
-        })
+        });
     })
     $("#openPlayPage").click(function () {
         chrome.tabs.create({"url": "/play.html"}, function (tab) {
-        })
+        });
     })
+
     $(".auto-play ul li a").click(function () {
         var autoPalyType = $(this).attr("type");
         localStorage.setItem("autoPalyType", autoPalyType);
@@ -41,14 +42,15 @@
         });
         return false;
     });
-    $(".search-text").on("keypress",function (e) {
-        if (e.keyCode == 13){
+    $(".search-text").on("keypress", function (e) {
+        if (e.keyCode == 13) {
             var url = "";
             var val = $(this).val();
-            if (/\d+/.test(val)){
-                url = "http://www.bilibili.com/video/av"+val;
-            }else{
-                url = "http://search.bilibili.com/all?from_source=banner_search&keyword="+val;
+            if (val.length == 0) return;
+            if (/\d+/.test(val)) {
+                url = "http://www.bilibili.com/video/av" + val;
+            } else {
+                url = "http://search.bilibili.com/all?from_source=banner_search&keyword=" + val;
             }
             chrome.tabs.create({"url": url}, function (tab) {
             })

@@ -84,6 +84,15 @@
         }
         var next;
         var isLast = false;
+        // 如果first丢失，循环找出来
+        if (!list.aids[list.first]){
+            for(var aid in list.aids){
+                if (!aid.before){
+                    list.first = aid;
+                    break;
+                }
+            }
+        }
         while (!isLast) {
             next = list.aids[next ? next.next : list.first];
             $list.append("<li id='" + next.aid + "' class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-close'></span> " + next.info.title + "</li>");
@@ -113,6 +122,7 @@
             {
                 text: "确定",
                 click: function () {
+                    playNext();
                     list.remove(selectAid);
                     list.save();
                     $(("#" + selectAid)).remove();
