@@ -58,23 +58,31 @@
             "<input id='speed_val' type='text' " +
             (speed_val ? "value='" + speed_val + "'" : "") +
             "placeholder='0'/><span>秒</span>" +
+            "<span> *仅HTML5播放器有效</span>" +
             "</div>" +
             "</div>";
+
         $("#bofqi").before(auto_skip_html);
 
         var isAv = window.location.href.indexOf("http://www.bilibili.com/video/av") != -1;
         var skipPlay = function () {
+            console.log("skipPlay");
             var skipInterval = window.setInterval(function () {
+                console.log("get videos");
                 // 等待video加载
                 if (isAv) {
                     video = document.getElementsByTagName("video");
                 } else {
                     video = document.getElementsByTagName("iframe")[0].contentWindow.document.getElementsByTagName("video");
                 }
+
+                console.log("get videos success");
+                console.log(video);
                 if (video.length > 0) {
                     window.clearInterval(skipInterval);
                     video = video[0];
                     skipInterval = window.setInterval(function () {
+                        console.log("listen video");//监听
                         if (!video.paused && skipFlag) {
                             if (video.currentTime >0.5 && video.currentTime <= 1.9 && skip_start_time) {
                                 video.currentTime = skip_start_time;
@@ -148,7 +156,17 @@
         // 快进按钮
         $("#speed_btn").on("click", function () {
             var speedVal = $("#speed_val").val();
-            speedVal && (video.currentTime += parseInt(speedVal));
+            if (!video) {
+                if (isAv) {
+                    video = document.getElementsByTagName("video")[0];
+                } else {
+                    video = document.getElementsByTagName("iframe")[0].contentWindow.document.getElementsByTagName("video")[0];
+                }
+            }
+            if (speedVal) {
+                video.currentTime = video.currentTime ? video.currentTime + parseInt(speedVal) : parseInt(speedVal);
+                video.play();
+            }
         });
         // 输入框过滤
         $("#speed_val").on("input", function () {
