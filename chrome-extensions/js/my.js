@@ -65,24 +65,23 @@
         $("#bofqi").before(auto_skip_html);
 
         var isAv = window.location.href.indexOf("http://www.bilibili.com/video/av") != -1;
+        var skipPlayFlag = false;
         var skipPlay = function () {
-            console.log("skipPlay");
+            // 不重复启动定时器
+            if (skipPlayFlag) return;
+            skipPlayFlag = true;
+            //
             var skipInterval = window.setInterval(function () {
-                console.log("get videos");
                 // 等待video加载
                 if (isAv) {
                     video = document.getElementsByTagName("video");
                 } else {
                     video = document.getElementsByTagName("iframe")[0].contentWindow.document.getElementsByTagName("video");
                 }
-
-                console.log("get videos success");
-                console.log(video);
                 if (video.length > 0) {
                     window.clearInterval(skipInterval);
                     video = video[0];
                     skipInterval = window.setInterval(function () {
-                        console.log("listen video");//监听
                         if (!video.paused && skipFlag) {
                             if (video.currentTime >0.5 && video.currentTime <= 1.9 && skip_start_time) {
                                 video.currentTime = skip_start_time;
@@ -91,6 +90,7 @@
                                 $(".v-plist span").length > 0 && $(".v-plist span").next()[0].click();// 成功直接页面转跳
 
                                 $(".v1-bangumi-list-part .complete-list .cur").next()[0].click();
+                                skipPlayFlag = false;
                                 skipPlay();
                                 autoPlay();
                             }
@@ -135,13 +135,6 @@
                             return false;
                         }
                     });
-                    // $("#plist a").each(function (i, e) {
-                    //     var href = $(e).attr("href");
-                    //     if (href && /^www.bilibili.com\/video\/av\d+\/index_\d.html$/.test(href)) {
-                    //         speed_val = $("#speed_val").val() || 0;
-                    //         $(e).attr("href", href + "?skip_start_time=" + skip_start_time + "&skip_end_time=" + skip_end_time + "&speed_val=" + speed_val);
-                    //     }
-                    // });
                 }
                 // 启动定时器
                 skipPlay();
