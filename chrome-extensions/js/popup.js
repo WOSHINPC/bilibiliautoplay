@@ -12,42 +12,13 @@
         });
     })
 
-    $(".auto-play ul li a").click(function () {
-        var autoPalyType = $(this).attr("type");
-        localStorage.setItem("autoPalyType", autoPalyType);
-        if (autoPalyType == "play") {
-            $("#select").text("自动播放");
-        } else {
-            $("#select").text("禁用");
-        }
-    });
-    var autoPalyType = localStorage.getItem("autoPalyType");
-    if (autoPalyType == "play") {
-        $("#select").text("自动播放");
-    } else if (autoPalyType == "enforcement") {
-        $("#select").text("强制播放");
-    } else {
-        $("#select").text("禁用");
-    }
-
-    $(".auto-play ul").hide().menu();
-    $("#select").click(function () {
-        var menu = $(".auto-play ul").show().position({
-            my: "left top",
-            at: "left bottom",
-            of: this
-        });
-        $(document).one("click", function () {
-            menu.hide();
-        });
-        return false;
-    });
+    /** 搜索 */
     $(".search-text").on("keypress", function (e) {
         if (e.keyCode == 13) {
             var url = "";
             var val = $(this).val();
             if (val.length == 0) return;
-            if (/\d+/.test(val)) {
+            if (/^\d+$/.test(val)) {
                 url = "http://www.bilibili.com/video/av" + val;
             } else {
                 url = "http://search.bilibili.com/all?from_source=banner_search&keyword=" + val;
@@ -56,7 +27,32 @@
             })
         }
     })
+    /** 开关类型的事件绑定 */
+    let buildOff = function (select, itemName, mame) {
+        if (localStorage.getItem(itemName) === "true") {
+            $(select).text(mame + "(开)");
+            console.log(mame + "(开)");
+        } else {
+            $(select).text(mame + "(关)");
+            console.log(mame + "(关)");
+        }
+        $(select).on("click", function () {
+            var off = !(localStorage.getItem(itemName) === "true");
+            if (off) {
+                $(select).text(mame + "(开)");
+            } else {
+                $(select).text(mame + "(关)");
+            }
+            localStorage.setItem(itemName, off);
+        });
+    };
+    buildOff("#autoPlay", "autoPlay", "自动播放");
+    buildOff("#wideScreen", "wideScreen", "宽屏");
+    buildOff("#clearAd", "clearAd", "去广告");
+    buildOff("#playLocation", "playLocation", "移至标题");
+    buildOff("#barrage", "barrage", "弹幕");
 
+    /** 收录 */
     $("#record").click(function () {
         console.log("record");
         chrome.tabs.getSelected(null, function (tab) {

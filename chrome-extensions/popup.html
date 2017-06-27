@@ -6,11 +6,11 @@
     <link href="/css/jquery-ui.structure.min.css" rel="stylesheet">
     <style>
         body {
-            width: 220px;
+            width: 260px;
         }
 
         button {
-            width: 100px;
+            width: 120px;
             margin-top: 10px;
         }
 
@@ -22,15 +22,6 @@
             border-top: 1px solid red;
             margin-top: 2px;
             font-size: 8px;
-        }
-
-        .ui-menu {
-            position: absolute;
-            width: 100px;
-        }
-
-        .auto-play {
-            float: left;
         }
 
         .auto-play ul {
@@ -63,51 +54,31 @@
         }
 
         .search-text {
-            width: 200px;
+            width: 240px;
             height: 24px;
             margin-top: 10px;
         }
-
-        .skip-op-ep {
-            width: 100%;
-            margin-left: -3px;
-            padding: 3px;
-            border-top-left-radius: 4px;
-            border-bottom-left-radius: 4px;
-            border: 1px solid #999;
-            border-right: 0;
-        }
-
-        .skip-op-ep input {
-            width: 70px;
-            height: 24px;
-            line-height: 24px;
-            font-size: 20px;
-            padding-left: 25px;
-        }
-        .skip-op-ep .ep-time {
-            margin-left: 2px;
-        }
-
     </style>
 </head>
 <body>
-<button class="ui-button" id="openFavorite">打开bilibili</button>
+<button style="width: 244px" class="ui-button" id="openFavorite">打开bilibili</button>
 
 <button class="ui-button" id="openPlayPage">打开播放页</button>
 
-<button class="ui-button" id="select">禁用</button>
-
 <button class="ui-button" id="record">收录当前页</button>
+
+<button class="ui-button" id="autoPlay">自动播放</button>
+
+<button class="ui-button" id="wideScreen">宽屏</button>
+
+<button class="ui-button" id="clearAd">去广告</button>
+
+<button class="ui-button" id="playLocation">移至标题</button>
+
+<button class="ui-button" id="barrage">弹幕(开)</button>
 
 <input type="text" class="search-text" placeholder="搜索（纯数字视为av号）"/>
 
-<div class="auto-play">
-    <ul>
-        <li><a href="#" type="disable">禁用</a></li>
-        <li><a href="#" type="play">自动播放</a></li>
-    </ul>
-</div>
 <div id="recordList" style="display: none">
     <p>成功收录以下：</p>
     <ol>
