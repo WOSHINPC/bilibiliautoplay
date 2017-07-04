@@ -50,7 +50,7 @@
     buildOff("#wideScreen", "wideScreen", "宽屏");
     buildOff("#clearAd", "clearAd", "去广告");
     buildOff("#playLocation", "playLocation", "移至标题");
-    buildOff("#barrage", "barrage", "弹幕");
+    buildOff("#barrage", "barrage", "关闭弹幕");
 
     /** 收录 */
     $("#record").click(function () {
