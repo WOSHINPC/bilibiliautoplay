@@ -18,7 +18,7 @@
             var url = "";
             var val = $(this).val();
             if (val.length == 0) return;
-            if (/^\d+$/.test(val)) {
+            if (/^\d{6,}$/.test(val)) {
                 url = "http://www.bilibili.com/video/av" + val;
             } else {
                 url = "http://search.bilibili.com/all?from_source=banner_search&keyword=" + val;
