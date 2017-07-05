@@ -1,3 +1,8 @@
+2107.7.5   
+加了点其他功能，看界面就应该能看懂
+
+![image](https://github.com/WOSHINPC/bilibiliautoplay/raw/master/chrome-extensions/help-img/main2.png)   
+
 # bilibiliautoplay
 用于循环播放B站视频的插件  
 popup.html就3个按钮  
