@@ -29,7 +29,7 @@
             var video = getVideo();
             if (video) {
                 // 自动播放
-                if (param.autoPaly) {
+                if (param.autoPlay) {
                     video.play();
                 }
                 // 自动宽屏

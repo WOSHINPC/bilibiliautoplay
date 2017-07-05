@@ -5,29 +5,14 @@
     chrome.extension.onRequest.addListener(
         function (request, sender, sendResponse) {
             if (request.greeting == "init") {
-                var res = new Object();
-                let off;
-                off = localStorage.getItem("autoPlay");
-                if (off && off == "true") {
-                    res.autoPaly = true;
+                let s = localStorage.getItem("On-Off-Event");
+                let json;
+                if (s && s.length > 0){
+                    json = JSON.parse(s);
+                }else{
+                    json = {};
                 }
-                off = localStorage.getItem("wideScreen");
-                if (off && off == "true") {
-                    res.wideScreen = true;
-                }
-                off = localStorage.getItem("clearAd");
-                if (off && off == "true") {
-                    res.clearAd = true;
-                }
-                off = localStorage.getItem("playLocation");
-                if (off && off == "true") {
-                    res.playLocation = true;
-                }
-                off = localStorage.getItem("barrage");
-                if (off && off == "true") {
-                    res.barrage = true;
-                }
-                sendResponse(res);
+                sendResponse(json);
                 return;
             }
             sendResponse({"code": -1});

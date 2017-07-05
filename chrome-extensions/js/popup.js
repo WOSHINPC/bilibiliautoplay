@@ -27,23 +27,29 @@
             })
         }
     })
+    let s = localStorage.getItem("On-Off-Event");
+    let json;
+    if (s && s.length > 0){
+        json = JSON.parse(s);
+    }else{
+        json = {};
+    }
     /** 开关类型的事件绑定 */
     let buildOff = function (select, itemName, mame) {
-        if (localStorage.getItem(itemName) === "true") {
+        if (json[itemName]) {
             $(select).text(mame + "(开)");
-            console.log(mame + "(开)");
         } else {
             $(select).text(mame + "(关)");
-            console.log(mame + "(关)");
         }
         $(select).on("click", function () {
-            var off = !(localStorage.getItem(itemName) === "true");
+            var off = !(json[itemName]);
             if (off) {
                 $(select).text(mame + "(开)");
             } else {
                 $(select).text(mame + "(关)");
             }
-            localStorage.setItem(itemName, off);
+            json[itemName] = off;
+            localStorage.setItem("On-Off-Event", JSON.stringify(json));
         });
     };
     buildOff("#autoPlay", "autoPlay", "自动播放");
